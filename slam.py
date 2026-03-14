@@ -273,3 +273,16 @@ if __name__ == "__main__":
 
     # All done
     Log("Done.")
+
+    # Force cleanup to prevent hanging on CUDA multiprocessing
+    import gc
+    import multiprocessing
+    gc.collect()
+    torch.cuda.empty_cache()
+
+    # Terminate all active child processes
+    for child in multiprocessing.active_children():
+        child.terminate()
+        child.join(timeout=1)
+
+    os._exit(0)

@@ -4,7 +4,7 @@ Results:
   save_trj: True
   save_trj_kf_intv: 10
   use_gui: False
-  eval_rendering: True
+  eval_rendering: True  # Required for trajectory saving
   use_wandb: False
 
 Dataset:
@@ -78,4 +78,4 @@ pipeline_params:
   compute_cov3D_python: False
 
 SLAM:
-  color_refinement_iter: 100
+  color_refinement_iter: 0

@@ -1,7 +1,7 @@
 inherit_from: "configs/base_config.yaml"
 
 Dataset:
-  color_path: "/media/deng/Data/KITTIdataset/data_odometry_color/dataset/sequences/04/image_2" # replace it to your local path
+  color_path: "/path/to/KITTI/sequences/04/image_2" # replace it to your local path
   Calibration:
     fx: 7.070912000000e+02
     fy: 7.070912000000e+02
@@ -17,8 +17,8 @@ Dataset:
     distorted: False
 
 SLAM:
-  viz: True
-  loop_closure: True
+  viz: False  # Disabled - only trajectory metrics needed
+  loop_closure: False  # Disabled for faster evaluation
   motion_thresh: 24.0 # smaller values result in denser tracking, but higher values may affect loop closure detection (value varies according to resolution)
   loop_detect_thresh: 0.034 # smaller is better, but be careful of false positives
   3d2d_thread: 20 # number of parallel threads for 3D-2D matching
@@ -43,12 +43,12 @@ DepthModel:
 Hierarchical:
   voxel_size_lis: [0.1, 0.25, 1, 5, 25] # length must be equal to len(distance_lis) + 1
   distance_lis: [20.0, 40.0, 80.0, 160.0] # depth range of unidepth: 0~255
-  # Current voxel_size_lis and distance_lis aren't optimal - they just works. 
+  # Current voxel_size_lis and distance_lis aren't optimal - they just works.
   # I bet there's a better settings out there that would give us nicer rendering results.
   n_offsets: 24 # the larger the better
   point_ratio: 26 # the smaller the better
   appearance_dim: 64
-  color_refinement_iter: 200 # the larger the better
+  color_refinement_iter: 0 # disabled
   rendering_width: 480
   upsampling_method: 'bicubic' # using Deep Learing method may get better rendering result in original resolution
   # qualty of F.interpolate mode: 'nearest' < 'area' < 'linear' ≈ 'bilinear' < 'bicubic'

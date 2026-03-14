@@ -18,7 +18,7 @@ Dataset:
 
 SLAM:
   viz: True
-  loop_closure: True
+  loop_closure: False  # Disabled for faster evaluation
   motion_thresh: 24.0 # smaller values result in denser tracking, but higher values may affect loop closure detection (value varies according to resolution)
   loop_detect_thresh: 0.034 # smaller is better, but be careful of false positives
   3d2d_thread: 20 # number of parallel threads for 3D-2D matching

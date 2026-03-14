@@ -1,4 +1,5 @@
 import rich
+import sys
 
 _log_styles = {
     "GigaSLAM": "bold green",
@@ -16,3 +17,4 @@ def get_style(tag):
 def Log(*args, tag="GigaSLAM"):
     style = get_style(tag)
     rich.print(f"[{style}]{tag}:[/{style}]", *args)
+    sys.stdout.flush()
